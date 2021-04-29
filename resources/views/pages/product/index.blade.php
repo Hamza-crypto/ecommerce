@@ -20,6 +20,8 @@
 
                     @if(session('delete'))
                         <x-alert type="danger"> {{ session('delete') }}</x-alert>
+                    @elseif(session('add'))
+                        <x-alert type="success"> {{ session('add') }}</x-alert>
                     @endif
 
                     <table id="users-table" class="table table-striped" style="width:100%">
@@ -30,8 +32,8 @@
                                 <th>Price</th>
                                 <th>Image</th>
                                 <th>Category</th>
-                                <th>Description</th>
                                 <th>Status</th>
+                                <th>Created at</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -44,7 +46,7 @@
                                     </td>
                                     <td>{{ $product->price }}</td>
                                     <td> <img src="{{ $product->image }}" width="80px" height="60px"> </td>
-                                    <td>{{ $product->category_id }}</td>
+                                    <td>{{ $product->category->category_name }}</td>
                                     <td>{{ $product->status }}</td>
 
                                     <td>{{ $product->created_at->diffForHumans() }}</td>
